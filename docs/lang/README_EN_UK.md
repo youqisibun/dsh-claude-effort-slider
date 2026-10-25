@@ -1,13 +1,13 @@
 <div align="center">
 
-[中文](../../README.md) · **English**
+[中文](../../README.md) · **English (UK)** · [English (US)](README_EN_US.md) · [Français](README_FR.md) · [Русский](README_RU.md)
 
 <h1>dsh-claude-effort-slider</h1>
 
 **A Claude Code–style six-stop reasoning-effort slider for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
 The sixth stop, **Ultracode**, turns the track into a leftward-flowing band of lavender pixels.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-2EA043.svg)](../../LICENSE)
+[![Licence: MIT](https://img.shields.io/badge/License-MIT-2EA043.svg)](../../LICENSE)
 [![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-Plugin-4C9AFF.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![version](https://img.shields.io/github/package-json/v/youqisibun/dsh-claude-effort-slider?label=version&color=2EA043)](https://github.com/youqisibun/dsh-claude-effort-slider/releases)
 [![topic: dsh-plugin](https://img.shields.io/badge/topic-dsh--plugin-7B68EE.svg)](https://github.com/topics/dsh-plugin)
@@ -19,11 +19,11 @@ The sixth stop, **Ultracode**, turns the track into a leftward-flowing band of l
 > [!NOTE]
 > **Disclaimer**
 >
-> This is an unofficial third-party plugin. It is **not affiliated with, endorsed by, or sponsored by Anthropic or DeepSeek**, and has received no authorization or approval from them.<br>
+> This is an unofficial third-party plugin. It is **not affiliated with, endorsed by, or sponsored by Anthropic or DeepSeek**, and has received no authorisation or approval from them.<br>
 > Names such as "Claude", "Claude Code" and "Ultracode" appear only to describe the source of the design inspiration; **all related trademarks and intellectual property belong to their respective owners**.<br>
 > This project contains no official code or assets — every interface element and animation is drawn at runtime by the code in this repository.
 >
-> 本文档为中文版的翻译；如有出入，以[中文版](../../README.md)为准。
+> This document is a translation of the [Chinese original](../../README.md); where they differ, the Chinese version prevails.
 
 ---
 
@@ -159,16 +159,16 @@ npm test          # 38 offline assertions: stop mapping / geometry / texture / s
 npm run pack      # build into dist/
 ```
 
-There is no build step: `lib/client.js` is the shipped artifact (`react` / `react-dom` are provided by the host).
+There is no build step: `lib/client.js` is the shipped artefact (`react` / `react-dom` are provided by the host).
 
 ```
-lib/index.js      Host half: empty apply + static check of the client artifact
+lib/index.js      Host half: empty apply + static check of the client artefact
 lib/client.js     Client half: chip bridge, popover, slider, pixel texture, directory I/O
 cordis.patch.yml  Mounts the package into the cordis plugin tree
 ```
 
 ---
 
-## License
+## Licence
 
 MIT

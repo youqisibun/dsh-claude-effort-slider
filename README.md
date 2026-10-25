@@ -1,6 +1,6 @@
 <div align="center">
 
-**中文** · [English](docs/lang/README_EN.md)
+**中文** · [English (UK)](docs/lang/README_EN_UK.md) · [English (US)](docs/lang/README_EN_US.md) · [Français](docs/lang/README_FR.md) · [Русский](docs/lang/README_RU.md)
 
 <h1>dsh-claude-effort-slider</h1>
 
