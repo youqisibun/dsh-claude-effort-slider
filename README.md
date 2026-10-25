@@ -4,8 +4,7 @@
 
 <h1>dsh-claude-effort-slider</h1>
 
-**Claude Code 风格的六档推理强度滑条，给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 用。**
-第六档 **Ultracode** 会把轨道变成一条向左流动的淡紫像素带。
+**Claude Code 风格的六档推理强度滑条，给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 用。**　第六档 **Ultracode** 会把轨道变成一条向左流动的淡紫像素带。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-2EA043.svg)](./LICENSE)
 [![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-Plugin-4C9AFF.svg)](https://github.com/deepseek-ai/deepseek-harness)
@@ -19,12 +18,12 @@
 > [!NOTE]
 > **非官方项目声明**
 >
-> 本项目是第三方开源插件，**与 Anthropic、DeepSeek 均无关联**，未获其授权、认可或赞助。
-> 文中出现的 "Claude"、"Claude Code"、"Ultracode" 等名称，仅用于说明设计风格的来源与致敬对象，**相关商标与知识产权归各自所有者**。
+> 本项目是第三方开源插件，**与 Anthropic、DeepSeek 均无关联**，未获其授权、认可或赞助。<br>
+> 文中出现的 "Claude"、"Claude Code"、"Ultracode" 等名称，仅用于说明设计风格的来源与致敬对象，**相关商标与知识产权归各自所有者**。<br>
 > 本项目不含任何官方代码或素材，所有界面与动画均由本仓库代码实时绘制。
 >
-> This is an unofficial third-party plugin. It is **not affiliated with, endorsed by, or sponsored by Anthropic or DeepSeek**.
-> Names such as "Claude", "Claude Code" and "Ultracode" are used only to describe the design inspiration; **all trademarks belong to their respective owners**.
+> This is an unofficial third-party plugin. It is **not affiliated with, endorsed by, or sponsored by Anthropic or DeepSeek**.<br>
+> Names such as "Claude", "Claude Code" and "Ultracode" are used only to describe the design inspiration; **all trademarks belong to their respective owners**.<br>
 > No official code or assets are included; every pixel is drawn at runtime by the code in this repository.
 
 ---

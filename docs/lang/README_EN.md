@@ -19,8 +19,8 @@ The sixth stop, **Ultracode**, turns the track into a leftward-flowing band of l
 > [!NOTE]
 > **Disclaimer**
 >
-> This is an unofficial third-party plugin. It is **not affiliated with, endorsed by, or sponsored by Anthropic or DeepSeek**, and has received no authorization or approval from them.
-> Names such as "Claude", "Claude Code" and "Ultracode" appear only to describe the source of the design inspiration; **all related trademarks and intellectual property belong to their respective owners**.
+> This is an unofficial third-party plugin. It is **not affiliated with, endorsed by, or sponsored by Anthropic or DeepSeek**, and has received no authorization or approval from them.<br>
+> Names such as "Claude", "Claude Code" and "Ultracode" appear only to describe the source of the design inspiration; **all related trademarks and intellectual property belong to their respective owners**.<br>
 > This project contains no official code or assets — every interface element and animation is drawn at runtime by the code in this repository.
 >
 > 本文档为中文版的翻译；如有出入，以[中文版](../../README.md)为准。
