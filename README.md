@@ -1,22 +1,23 @@
-# dsh-claude-effort-slider
+<div align="center">
+
+**中文** · [English](docs/lang/README_EN.md)
+
+<h1>dsh-claude-effort-slider</h1>
 
 **Claude Code 风格的六档推理强度滑条，给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 用。**
 第六档 **Ultracode** 会把轨道变成一条向左流动的淡紫像素带。
 
-> A six-stop reasoning-effort slider for DeepSeek Harness, with a pixel-texture Ultracode mode at the sixth stop.
+[![License: MIT](https://img.shields.io/badge/License-MIT-2EA043.svg)](./LICENSE)
+[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-Plugin-4C9AFF.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/github/package-json/v/youqisibun/dsh-claude-effort-slider?label=version&color=2EA043)](https://github.com/youqisibun/dsh-claude-effort-slider/releases)
+[![topic: dsh-plugin](https://img.shields.io/badge/topic-dsh--plugin-7B68EE.svg)](https://github.com/topics/dsh-plugin)
 
----
-
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
-[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek_Harness-Plugin-blue?style=for-the-badge)](https://github.com/deepseek-ai/deepseek-harness)
-[![version](https://img.shields.io/github/package-json/v/youqisibun/dsh-claude-effort-slider?style=for-the-badge&label=version&color=green)](https://github.com/youqisibun/dsh-claude-effort-slider/releases)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES2020-yellow?style=for-the-badge)]()
-[![topic](https://img.shields.io/badge/topic-dsh--plugin-purple?style=for-the-badge)](https://github.com/topics/dsh-plugin)
+</div>
 
 ---
 
 > [!NOTE]
-> **非官方项目声明 / Disclaimer**
+> **非官方项目声明**
 >
 > 本项目是第三方开源插件，**与 Anthropic、DeepSeek 均无关联**，未获其授权、认可或赞助。
 > 文中出现的 "Claude"、"Claude Code"、"Ultracode" 等名称，仅用于说明设计风格的来源与致敬对象，**相关商标与知识产权归各自所有者**。

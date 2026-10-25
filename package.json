@@ -37,6 +37,7 @@
     "install.cmd",
     "LICENSE",
     "README.md",
+    "docs/lang/README_EN.md",
     "screenshots.json",
     "preview/two-buttons.png",
     "preview/dark-ultracode.png",
