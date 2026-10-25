@@ -1,0 +1,64 @@
+{
+  "name": "dsh-claude-effort-slider",
+  "version": "0.9.2",
+  "description": "A six-stop reasoning-effort slider for DeepSeek Harness: drag to switch off/low/high/max, with a pixel-texture Ultracode mode at the sixth stop.",
+  "license": "MIT",
+  "author": "youqisibun",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youqisibun/dsh-claude-effort-slider.git"
+  },
+  "homepage": "https://github.com/youqisibun/dsh-claude-effort-slider",
+  "bugs": {
+    "url": "https://github.com/youqisibun/dsh-claude-effort-slider/issues"
+  },
+  "type": "module",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "reasoning-effort",
+    "ultracode",
+    "slider",
+    "ui",
+    "claude-code"
+  ],
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "install-profile.ps1",
+    "install.cmd",
+    "LICENSE",
+    "README.md",
+    "screenshots.json",
+    "preview/two-buttons.png",
+    "preview/dark-ultracode.png",
+    "preview/light-ultracode.png",
+    "preview/entrance.png",
+    "ANIMATION.md"
+  ],
+  "scripts": {
+    "test": "node test/client.test.mjs",
+    "prepack": "node test/client.test.mjs",
+    "pack": "npm pack --pack-destination dist"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}
