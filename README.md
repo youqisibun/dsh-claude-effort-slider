@@ -7,6 +7,14 @@
 
 ---
 
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
+[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek_Harness-Plugin-blue?style=for-the-badge)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/github/package-json/v/youqisibun/dsh-claude-effort-slider?style=for-the-badge&label=version&color=green)](https://github.com/youqisibun/dsh-claude-effort-slider/releases)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES2020-yellow?style=for-the-badge)]()
+[![topic](https://img.shields.io/badge/topic-dsh--plugin-purple?style=for-the-badge)](https://github.com/topics/dsh-plugin)
+
+---
+
 > [!NOTE]
 > **非官方项目声明 / Disclaimer**
 >
