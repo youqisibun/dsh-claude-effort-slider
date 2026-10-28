@@ -77,7 +77,7 @@ dsh plugin --profile web add github:youqisibun/dsh-claude-effort-slider
 ### 从 tarball 安装
 
 ```bash
-dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.2.tgz
+dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.3.tgz
 ```
 
 ---
@@ -139,17 +139,71 @@ DSH 的真实 `reasoning effort` 只有 **off / low / high / max** 四个值，�
 
 ## 常见问题
 
-**装完没反应？**
-客户端 bundle 在启动时注入，必须**完全退出 DSH 再开**。
-
-**桌面版装不上？**
-`desktop` profile 不能用 `dsh plugin` 命令装，用 `install.cmd -Profile desktop`。
-
 **拉满后想再看一次动画？**
 关掉浮层再打开不会重播（设计如此）；把滑条拖离最后一格再拖回来，会重播一次。
 
 **卸载后原生界面没恢复？**
 用 `install.cmd -Profile desktop -Uninstall` 走完整卸载，然后重启。
+
+---
+
+## 装上了没反应？按这个顺序查
+
+> **先看这条**：滑条只出现在**真实会话**里。
+> DSH 的输入区插槽只在「有会话 + 有输入框」时才渲染（条件是 `sessionId` 和 `input` 都存在），
+> 所以**首页、欢迎页、新会话空状态看不到滑条是正常的**。新建一个会话、随便发一条消息，再看输入框右下角。
+
+### 1. 确认装进去了
+
+```bash
+dsh plugin list --profile web      # 网页版
+dsh plugin list --profile desktop  # 桌面版（若命令行可用）
+```
+
+列表里应该出现 `dsh-claude-effort-slider`。
+
+### 2. 确认改的是"对的那个 profile"
+
+| 你用的客户端 | profile | 安装方式 |
+|---|---|---|
+| 网页版（`dsh web`） | `web` | `dsh plugin --profile web add ...` |
+| 桌面版（Electron） | `desktop` | **不能用 `dsh plugin`**，必须 `install.cmd -Profile desktop` |
+
+装错 profile 是最常见的"装了没反应"——插件在 `web` 里，你却在桌面版里找。
+
+### 3. 确认真的重启了
+
+客户端 bundle 只在**进程启动时**注入。关窗口不算，要在任务管理器里确认没有残留的 dsh 进程。
+
+### 4. 看启动日志里有没有这一行
+
+DSH 启动时会打印客户端产物的自检结果，搜 `dsh-claude-effort-slider`：
+
+| 日志 | 含义 | 怎么办 |
+|---|---|---|
+| `客户端产物 lib/client.js 就绪（… 字节，静态检查通过）` | 宿主侧正常 | 往下查第 5 步 |
+| `不可读` / `检查未通过` | 包装坏了或不完整 | 重装 |
+| **完全没有这行** | 插件没被加载 | profile 装错了，回第 2 步 |
+
+### 5. 打开浏览器控制台（F12 → Console）
+
+搜 `claude-effort-slider`。
+
+如果画面上曾闪过左下角一条暗红色小提示「**Effort 滑条未加载：…**」，它已经写明了原因：
+
+| 提示内容 | 原因 | 解决 |
+|---|---|---|
+| `宿主没有提供 slots 服务` | DSH 版本太旧，没有插槽机制 | 升级到 **≥ 0.2.1-rc.2** |
+| `插槽 conversation.input.right 注册失败` | 插槽名在该版本不存在或被占用 | 升级/降级到已验证版本 |
+
+### 还是不行？
+
+到 [Issues](https://github.com/youqisibun/dsh-claude-effort-slider/issues) 提供这四样，能直接定位：
+
+1. `node -v` 和 `dsh --version` 的输出
+2. 安装命令的**完整**终端输出（不要截断）
+3. F12 Console 里含 `claude-effort-slider` 的报错
+4. 你用的是**网页版还是桌面版**、DSH 版本号
 
 ---
 

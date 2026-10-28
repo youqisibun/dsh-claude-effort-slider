@@ -135,7 +135,11 @@ ok(source.includes("id: \"dsh-claude-effort-slider\""), "bundle id");
 ok(source.includes("__ModuleLoader__.load"), "模块加载器");
 ok(source.includes("conversation.input.right"), "目标插槽");
 ok(source.includes("exports.apply"), "导出 apply");
-ok(source.includes("[\"slots\", \"sessions\", \"modelDirectories\", \"remote\", \"remote.session\"]"), "inject 服务齐");
+/* inject 只能声明真正必需的服务：多余的服务在缺失的客户端上会让插件永久停在 PENDING */
+ok(/var inject = \["slots"\];/.test(source), "inject 只声明 slots");
+for (const bogus of ["sessions", "modelDirectories", "remote", "remote.session"]) {
+  ok(!new RegExp(`var inject = \\[[^\\]]*"${bogus.replace(".", "\\.")}"`).test(source), `不声明未使用的服务 ${bogus}`);
+}
 ok(!source.includes("agent.inject"), "不许注入模型上下文");
 ok(!source.includes("session/event"), "不许注册会话事件");
 ok(source.includes("::after{content:attr(data-dces-label)"), "胶囊文字由 CSS 覆盖");

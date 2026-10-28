@@ -76,7 +76,7 @@ The script backs up the profile's `package.json`, adds a `link:` dependency, wri
 ### From a tarball
 
 ```bash
-dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.2.tgz
+dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.3.tgz
 ```
 
 ---
@@ -138,17 +138,72 @@ To change speed, density or brightness, see the parameter reference in [`ANIMATI
 
 ## FAQ
 
-**Nothing happens after installing?**
-The client bundle is injected at startup — you must **quit DSH completely and start it again**.
-
-**Cannot install into the desktop build?**
-The `desktop` profile does not accept `dsh plugin`; use `install.cmd -Profile desktop`.
-
 **Want to watch the animation again after maxing out?**
 Closing and reopening the popover does not replay it (by design); drag the slider away from the last stop and back to replay it once.
 
 **Native UI not restored after uninstalling?**
 Run `install.cmd -Profile desktop -Uninstall` for a full removal, then restart.
+
+---
+
+## Nothing happens after installing? Check these in order
+
+> **Read this first**: the slider only appears inside a **real session**.
+> DSH renders the composer slots only when both `sessionId` and `input` exist, so seeing nothing on the
+> home screen, welcome page or an empty new session is **expected**. Create a session, send one message,
+> then look at the bottom-right of the composer.
+
+### 1. Confirm it is installed
+
+```bash
+dsh plugin list --profile web      # web
+dsh plugin list --profile desktop  # desktop (if the CLI is available)
+```
+
+`dsh-claude-effort-slider` should be in the list.
+
+### 2. Confirm you installed into the right profile
+
+| Client | profile | How to install |
+|---|---|---|
+| Web (`dsh web`) | `web` | `dsh plugin --profile web add ...` |
+| Desktop (Electron) | `desktop` | **`dsh plugin` refuses it** — use `install.cmd -Profile desktop` |
+
+Installing into the wrong profile is the most common cause: the plugin is in `web`, but you are looking for it in the desktop app.
+
+### 3. Confirm you actually restarted
+
+The client bundle is only injected at **process start**. Closing the window is not enough — make sure no dsh process is still running.
+
+### 4. Look for this line in the startup log
+
+DSH logs the client artifact self-check at startup. Search for `dsh-claude-effort-slider`:
+
+| Log line | Meaning | Action |
+|---|---|---|
+| `客户端产物 lib/client.js 就绪（… 字节，静态检查通过）` | Host side is fine | Go to step 5 |
+| `不可读` / `检查未通过` | Package is corrupt or incomplete | Reinstall |
+| **Nothing at all** | The plugin was never loaded | Wrong profile — back to step 2 |
+
+### 5. Open the browser console (F12 → Console)
+
+Search for `claude-effort-slider`.
+
+If a small dark-red notice briefly appeared in the bottom-left corner saying **"Effort 滑条未加载：…"**, it already states the cause:
+
+| Notice text | Cause | Fix |
+|---|---|---|
+| `宿主没有提供 slots 服务` | DSH too old, no slot system | Upgrade to **≥ 0.2.1-rc.2** |
+| `插槽 conversation.input.right 注册失败` | Slot missing or taken in that version | Use a verified version |
+
+### Still stuck?
+
+Open an [issue](https://github.com/youqisibun/dsh-claude-effort-slider/issues) with these four things:
+
+1. Output of `node -v` and `dsh --version`
+2. The **complete** terminal output of the install command
+3. Console errors mentioning `claude-effort-slider`
+4. Whether you use the **web or desktop** build, and the DSH version
 
 ---
 

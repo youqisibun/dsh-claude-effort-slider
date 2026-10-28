@@ -39,12 +39,48 @@ $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 
 function Say($message) { Write-Host "  $message" }
 function Fail($message) { Write-Host "✗ $message" -ForegroundColor Red; exit 1 }
+function Warn($message) { Write-Host "! $message" -ForegroundColor Yellow }
 
 Write-Host "`n=== dsh-claude-effort-slider 安装器 ===" -ForegroundColor Cyan
 Say "DSH home     : $DshHome"
 Say "profile      : $Profile"
 Say "插件目录     : $PluginDir"
 Say "模式         : $(if ($Uninstall) { '卸载' } else { '安装' })"
+
+# ── 环境体检（只警告，不阻断：这些问题大多能继续装，但值得知道）─────────────
+Write-Host "`n--- 环境体检 ---"
+
+# Node 版本：DSH 要求 >=22，本插件的 engines 也写了 >=22
+$nodeMajor = $null
+try {
+  $nodeVer = (& node -v 2>$null)
+  if ($nodeVer -match 'v(\d+)\.') { $nodeMajor = [int]$Matches[1] }
+} catch { }
+if ($null -eq $nodeMajor) {
+  Warn "PATH 里找不到 node。DSH 本身需要 Node >=22，先装 Node 再继续。"
+} elseif ($nodeMajor -lt 22) {
+  Warn "Node 是 v$nodeMajor，本插件要求 >=22。装上了也可能在启动时被 engines 拦下。"
+} else {
+  Say "node v$nodeMajor ✓"
+}
+
+# 非 ASCII 路径：mklink /J 在 cmd 层处理中文路径时可能失败
+if ($PluginDir -match '[^\x00-\x7F]') {
+  Warn "插件目录含中文/非 ASCII 字符：$PluginDir"
+  Warn "Windows 的 mklink 走 cmd 代码页，这类路径有概率建链接失败。若下面校验的 node_modules 是 ✗，把插件挪到纯英文路径再重跑。"
+} else {
+  Say "插件路径纯 ASCII ✓"
+}
+
+# DSH 版本：低于 0.2.1-rc.2 时插槽与模型席形状可能对不上
+try {
+  $dshVer = (& dsh --version 2>$null | Select-Object -First 1)
+  if ($dshVer) { Say "dsh $dshVer" }
+} catch { }
+
+# pnpm：DSH 的 profile 用 pnpm 管理依赖；缺失时手动建的链接仍可用，但后续 install 会清掉
+$pnpmCmd = Get-Command pnpm -ErrorAction SilentlyContinue
+if ($pnpmCmd) { Say "pnpm 可用 ✓" } else { Warn "PATH 里没有 pnpm。DSH 通常自带，若之后执行 pnpm install，手建的链接可能被覆盖。" }
 
 # ── 前置检查 ────────────────────────────────────────────────────────────────
 $profileDir = Join-Path $DshHome (Join-Path "profiles" $Profile)
@@ -114,7 +150,13 @@ if ($Uninstall) {
   }
 } else {
   New-Item -ItemType Directory -Force -Path $modulesDir | Out-Null
-  if (Test-Path $linkPath) { Say "链接已存在，跳过：$linkPath" }
+  if (Test-Path $linkPath) {
+    if ($bundles -contains $name) {
+      Say "看起来已经装过了（依赖、bundles、链接都在）。本次只做刷新；如需重装请先 -Uninstall。"
+    } else {
+      Say "链接已存在，跳过：$linkPath"
+    }
+  }
   elseif ($env:OS -eq "Windows_NT") {
     cmd /c mklink /J "$linkPath" "$PluginDir" | Out-Null
     Say "已建 junction：$linkPath → $PluginDir"

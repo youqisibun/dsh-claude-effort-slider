@@ -1,6 +1,6 @@
 {
   "name": "dsh-claude-effort-slider",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "A six-stop reasoning-effort slider for DeepSeek Harness: drag to switch off/low/high/max, with a pixel-texture Ultracode mode at the sixth stop.",
   "license": "MIT",
   "author": "youqisibun",
@@ -61,6 +61,7 @@
       "patch": "./cordis.patch.yml"
     },
     "client": {
+      "inject": [],
       "platform": "web",
       "immediately": true
     }
