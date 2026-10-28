@@ -77,7 +77,7 @@ dsh plugin --profile web add github:youqisibun/dsh-claude-effort-slider
 ### 从 tarball 安装
 
 ```bash
-dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.3.tgz
+dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.4.tgz
 ```
 
 ---

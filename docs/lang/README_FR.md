@@ -76,7 +76,7 @@ Le script sauvegarde le `package.json` du profil, ajoute une dépendance `link:`
 ### Depuis une archive tarball
 
 ```bash
-dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.3.tgz
+dsh plugin --profile web add ./dsh-claude-effort-slider-0.9.4.tgz
 ```
 
 ---
